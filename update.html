@@ -12,16 +12,27 @@
 </head>
 <body>
 
-<button id="updateButton" class="custom-button">Update Me!</button>
+<button id="updateButton" class="custom-button" style="display: none;">Update me</button>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var codeXyz = urlParams.get('skey');
+    
+    if (codeXyz) {
+      $('#updateButton').show();
+    }
+    
     var status = localStorage.getItem('skey');
-    $('#updateButton').prop('disabled', status === 'xtte_gpae').toggleClass('disabled', status === 'xtte_gpae');
+	
+	if (status === codeXyz) $('#updateButton').text('Already Updated You !');
+	
+    $('#updateButton').prop('disabled', status === codeXyz).toggleClass('disabled', status === codeXyz);
+    
     $('#updateButton').click(function() {
       if ($(this).hasClass('disabled')) return;
-      localStorage.setItem('skey', 'xtte_gpae');
+      localStorage.setItem('skey', codeXyz);
       $(this).prop('disabled', true).text('Updated You!').addClass('disabled');
     });
   });
