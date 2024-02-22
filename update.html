@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button3 {border-radius: 8px;}
+</style>
+</head>
+<body>
+
+<p><button onclick="updateMe()" class="button button3" type="button">Update me!</button></p>
+
+<script>
+updateMe();
+
+function updateMe() {
+  localStorage.setItem("skey", "xtte_gpae");
+}
+</script>
+
+</body>
