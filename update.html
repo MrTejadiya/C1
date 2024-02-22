@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button Example</title>
 <style>
-.button {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 26px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-.button3 {border-radius: 8px;}
+  .custom-button {background:green;color:#fff;padding:10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;font-weight:bold;border:none;border-radius:10px;cursor:pointer}
+  .custom-button:hover {background:lightgreen}
+  .custom-button.disabled {pointer-events:none;opacity:0.5}
 </style>
 </head>
 <body>
 
-<p><button onclick="updateMe()" class="button button3" type="button">Update me!</button></p>
+<button id="updateButton" class="custom-button">Update Me!</button>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-updateMe();
-
-function updateMe() {
-  localStorage.setItem("skey", "xtte_gpae");
-}
+  $(function() {
+    var status = localStorage.getItem('skey');
+    $('#updateButton').prop('disabled', status === 'xtte_gpae').toggleClass('disabled', status === 'xtte_gpae');
+    $('#updateButton').click(function() {
+      if ($(this).hasClass('disabled')) return;
+      localStorage.setItem('skey', 'xtte_gpae');
+      $(this).prop('disabled', true).text('Updated You!').addClass('disabled');
+    });
+  });
 </script>
 
 </body>
+</html>
